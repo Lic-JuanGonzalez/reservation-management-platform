@@ -1,0 +1,3534 @@
+{
+  "info": {
+    "name": "reservation-management-platform",
+    "description": "Variables se llenan automatico. Orden: 01-Dev Setup → 02-Auth → 03-Tenants → 04-Resources → 05-Reservations → 06-Reports",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "description": "",
+      "item": [
+        {
+          "name": "Register a new superadmin",
+          "description": "",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "auth": {},
+          "request": {
+            "auth": {},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "X-Dev-Key",
+                "value": "dev-secret-key-change-me",
+                "description": "",
+                "type": "string"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/dev/setup",
+              "path": [
+                "api",
+                "v1",
+                "dev",
+                "setup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/dev/setup",
+                  "path": [
+                    "api",
+                    "v1",
+                    "dev",
+                    "setup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Register a new customer account",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer06@test.com\",\n  \"password\": \"Customer1234!\",\n  \"first_name\": \"Juan\",\n  \"last_name\": \"Perez\",\n  \"phone\": \"+5491112345678\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/register",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/auth/register",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Get Verification Token",
+          "description": "",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "noauth",
+              "noauth": []
+            },
+            "method": "GET",
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "X-Dev-Key",
+                "value": "dev-secret-key-change-me",
+                "type": "string"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/dev/verification-token",
+              "path": [
+                "api",
+                "v1",
+                "dev",
+                "verification-token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "{{email}}",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/dev/verification-token",
+                  "path": [
+                    "api",
+                    "v1",
+                    "dev",
+                    "verification-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Authenticate and obtain JWT tokens",
+          "description": "",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "auth": {},
+          "request": {
+            "auth": {},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@barberia.com\",\n  \"password\": \"Admin1234!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/login",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/auth/login",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Refresh access token using refresh token",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refresh_token\": \"{{refresh_token}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/refresh",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "refresh"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/auth/refresh",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "refresh"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Get current authenticated user",
+          "description": "",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/me",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/auth/me",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Invalidate current tokens",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/logout",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "logout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/auth/logout",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Verify email address with token",
+          "description": "",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "auth": {},
+          "request": {
+            "auth": {},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"a7diQtrQnuqHcgjNUVcT3vW63DAJy4waGeryCsKYAJY\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/verify-email",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "verify-email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/auth/verify-email",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "verify-email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Request password reset email",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {},
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{email_superadmin}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/forgot-password",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "forgot-password"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/auth/forgot-password",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "forgot-password"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Get Reset Token",
+          "description": "",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "noauth",
+              "noauth": []
+            },
+            "method": "GET",
+            "body": {},
+            "header": [
+              {
+                "key": "X-Dev-Key",
+                "value": "dev-secret-key-change-me",
+                "description": "",
+                "type": "string"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/dev/reset-token",
+              "path": [
+                "api",
+                "v1",
+                "dev",
+                "reset-token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "superadmin@test.com",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Reset password using reset token",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "noauth",
+              "noauth": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"{{reset_token}}\",\n  \"new_password\": \"SuperAdmin1234!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/reset-password",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "reset-password"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/auth/reset-password",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "reset-password"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Change password (authenticated)",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"current_password\": \"SuperAdmin1234!\",\n  \"new_password\": \"SuperAdmin5678!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/change-password",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "change-password"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/auth/change-password",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "change-password"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Authenticate and obtain JWT tokens (Tenant Admin)",
+          "description": "",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var r=pm.response.json(); if(r.access_token){ pm.collectionVariables.set('access_token', r.access_token); pm.collectionVariables.set('refresh_token', r.refresh_token); console.log('Tenant admin tokens OK'); }"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@barberia.com\",\n  \"password\": \"Admin1234!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "type": "string"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/login",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "",
+                    "disabled": false
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/auth/login",
+                  "path": [
+                    "api",
+                    "v1",
+                    "auth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"owner@myclinic.com\",\n  \"password\": \"TenantOwner1234!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "auth": {}
+    },
+    {
+      "name": "Tenants",
+      "description": "",
+      "item": [
+        {
+          "name": "Create a new tenant (super admin only)",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Barbería Elite\",\n  \"slug\": \"barberia-elite\",\n  \"business_type\": \"beauty_salon\",\n  \"owner_email\": \"admin@barberia.com\",\n  \"owner_first_name\": \"Carlos\",\n  \"owner_last_name\": \"García\",\n  \"owner_password\": \"Admin1234!\",\n  \"phone\": \"+54911234567\",\n  \"website\": \"https://barberia.com\",\n  \"address\": \"Av. Corrientes 1234, CABA\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/tenants",
+              "path": [
+                "api",
+                "v1",
+                "tenants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/tenants",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "List all tenants (super admin only)",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/tenants",
+              "path": [
+                "api",
+                "v1",
+                "tenants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/tenants",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "limit",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Get tenant by ID",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/tenants/:tenant_id",
+              "path": [
+                "api",
+                "v1",
+                "tenants",
+                ":tenant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "tenant_id",
+                  "value": "ef211449-e35c-479a-8619-7ecbb36d720f",
+                  "description": "",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant_id",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tenants",
+                    ":tenant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "key": "tenant_id",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ]
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Update tenant",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"hola\",\n    \"logo_url\": \"hola hola\",\n    \"website\": \"hola.com.ar\",\n    \"phone\": \"+5412312312\",\n    \"address\": \"hola address\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/tenants/:tenant_id",
+              "path": [
+                "api",
+                "v1",
+                "tenants",
+                ":tenant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "tenant_id",
+                  "value": "ef211449-e35c-479a-8619-7ecbb36d720f",
+                  "description": "",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant_id",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tenants",
+                    ":tenant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "key": "tenant_id",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Update tenant settings",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timezone\": \"America/Argentina/Buenos_Aires\",\n  \"locale\": \"es-AR\",\n  \"currency\": \"ARS\",\n  \"max_advance_booking_days\": 30,\n  \"min_advance_booking_hours\": 2,\n  \"max_reservations_per_customer\": 5,\n  \"cancellation_hours_before\": 24,\n  \"slot_duration_minutes\": 30,\n  \"send_reminders\": true,\n  \"reminder_hours_before\": [24, 1]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/tenants/:tenant_id/settings",
+              "path": [
+                "api",
+                "v1",
+                "tenants",
+                ":tenant_id",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "tenant_id",
+                  "value": "ef211449-e35c-479a-8619-7ecbb36d720f",
+                  "description": "",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/tenants/:tenant_id/settings",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tenants",
+                    ":tenant_id",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "key": "tenant_id",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "auth": {}
+    },
+    {
+      "name": "Resources",
+      "description": "",
+      "item": [
+        {
+          "name": "Create resource (Room)",
+          "description": "",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var r=pm.response.json(); if(r.id){ pm.collectionVariables.set('resource_id', r.id); console.log('resource_id:', r.id); }"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Consultation Room B\",\n  \"resource_type\": \"room\",\n  \"description\": \"Main consultation room\",\n  \"capacity\": 1,\n  \"slot_duration_minutes\": 30,\n  \"buffer_minutes\": 10,\n  \"amenities\": [\"medical_bed\", \"sink\", \"computer\"],\n  \"working_hours\": {\n    \"monday\":    [{\"start\": \"09:00\", \"end\": \"17:00\"}],\n    \"tuesday\":   [{\"start\": \"09:00\", \"end\": \"17:00\"}],\n    \"wednesday\": [{\"start\": \"09:00\", \"end\": \"17:00\"}],\n    \"thursday\":  [{\"start\": \"09:00\", \"end\": \"17:00\"}],\n    \"friday\":    [{\"start\": \"09:00\", \"end\": \"13:00\"}],\n    \"saturday\":  [],\n    \"sunday\":    []\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "type": "string"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/resources",
+              "path": [
+                "api",
+                "v1",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "",
+                    "disabled": false
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/resources",
+                  "path": [
+                    "api",
+                    "v1",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Conference Room A\",\n  \"resource_type\": \"room\",\n  \"description\": \"Large conference room with projector\",\n  \"capacity\": 20,\n  \"slot_duration_minutes\": 60,\n  \"buffer_minutes\": 15,\n  \"amenities\": [\"projector\", \"whiteboard\", \"video_conferencing\"],\n  \"working_hours\": {\n    \"monday\": [{\"start\": \"09:00\", \"end\": \"18:00\"}],\n    \"tuesday\": [{\"start\": \"09:00\", \"end\": \"18:00\"}],\n    \"wednesday\": [{\"start\": \"09:00\", \"end\": \"18:00\"}],\n    \"thursday\": [{\"start\": \"09:00\", \"end\": \"18:00\"}],\n    \"friday\": [{\"start\": \"09:00\", \"end\": \"17:00\"}],\n    \"saturday\": [],\n    \"sunday\": []\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Create resource (Equipment)",
+          "description": "",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var r=pm.response.json(); if(r.id){ pm.collectionVariables.set('resource_id', r.id); console.log('resource_id:', r.id); }"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"MRI Machine\",\n  \"resource_type\": \"equipment\",\n  \"description\": \"Magnetic resonance imaging machine\",\n  \"capacity\": 1,\n  \"slot_duration_minutes\": 60,\n  \"buffer_minutes\": 15,\n  \"amenities\": [],\n  \"working_hours\": {\n    \"monday\":    [{\"start\": \"07:00\", \"end\": \"19:00\"}],\n    \"tuesday\":   [{\"start\": \"07:00\", \"end\": \"19:00\"}],\n    \"wednesday\": [{\"start\": \"07:00\", \"end\": \"19:00\"}],\n    \"thursday\":  [{\"start\": \"07:00\", \"end\": \"19:00\"}],\n    \"friday\":    [{\"start\": \"07:00\", \"end\": \"15:00\"}],\n    \"saturday\":  [],\n    \"sunday\":    []\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "type": "string"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/resources",
+              "path": [
+                "api",
+                "v1",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "",
+                    "disabled": false
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/resources",
+                  "path": [
+                    "api",
+                    "v1",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"MRI Machine\",\n  \"resource_type\": \"equipment\",\n  \"description\": \"Magnetic resonance imaging machine\",\n  \"capacity\": 1,\n  \"slot_duration_minutes\": 60,\n  \"buffer_minutes\": 15,\n  \"amenities\": [],\n  \"working_hours\": {\n    \"monday\":    [{\"start\": \"07:00\", \"end\": \"19:00\"}],\n    \"tuesday\":   [{\"start\": \"07:00\", \"end\": \"19:00\"}],\n    \"wednesday\": [{\"start\": \"07:00\", \"end\": \"19:00\"}],\n    \"thursday\":  [{\"start\": \"07:00\", \"end\": \"19:00\"}],\n    \"friday\":    [{\"start\": \"07:00\", \"end\": \"15:00\"}],\n    \"saturday\":  [],\n    \"sunday\":    []\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "List resources for current tenant",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/resources",
+              "path": [
+                "api",
+                "v1",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "resource_type",
+                  "value": "room",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "status",
+                  "value": "active",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/resources",
+                  "path": [
+                    "api",
+                    "v1",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resource_type",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "status",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "offset",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "limit",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Get resource by ID",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/resources/:resource_id",
+              "path": [
+                "api",
+                "v1",
+                "resources",
+                ":resource_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "resource_id",
+                  "value": "ebfee44c-f04b-4652-a6f6-b10792489058",
+                  "description": "",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/resources/:resource_id",
+                  "path": [
+                    "api",
+                    "v1",
+                    "resources",
+                    ":resource_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "key": "resource_id",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ]
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Update resource",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Silla 1 - Pedro\",\n  \"description\": \"Barbero senior\",\n  \"capacity\": 1,\n  \"slot_duration_minutes\": 45,\n  \"buffer_minutes\": 5,\n  \"amenities\": [\"tijeras\", \"maquina\", \"navaja\"],\n  \"status\": \"active\",\n  \"working_hours\": {\n    \"monday\": [{\"start\": \"09:00\", \"end\": \"18:00\"}],\n    \"tuesday\": [{\"start\": \"09:00\", \"end\": \"18:00\"}],\n    \"wednesday\": [{\"start\": \"09:00\", \"end\": \"18:00\"}],\n    \"thursday\": [{\"start\": \"09:00\", \"end\": \"18:00\"}],\n    \"friday\": [{\"start\": \"09:00\", \"end\": \"18:00\"}],\n    \"saturday\": [{\"start\": \"10:00\", \"end\": \"14:00\"}],\n    \"sunday\": []\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/resources/:resource_id",
+              "path": [
+                "api",
+                "v1",
+                "resources",
+                ":resource_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "resource_id",
+                  "value": "ebfee44c-f04b-4652-a6f6-b10792489058",
+                  "description": "",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/resources/:resource_id",
+                  "path": [
+                    "api",
+                    "v1",
+                    "resources",
+                    ":resource_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "key": "resource_id",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Delete resource (soft delete)",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/resources/:resource_id",
+              "path": [
+                "api",
+                "v1",
+                "resources",
+                ":resource_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "resource_id",
+                  "value": "ebfee44c-f04b-4652-a6f6-b10792489058",
+                  "description": "",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/resources/:resource_id",
+                  "path": [
+                    "api",
+                    "v1",
+                    "resources",
+                    ":resource_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "key": "resource_id",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ]
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "auth": {}
+    },
+    {
+      "name": "Reservations",
+      "description": "",
+      "item": [
+        {
+          "name": "Get available slots",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reservations/availability",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                "availability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "resource_id",
+                  "value": "e577ffc8-b369-4e86-85c3-3857844c294d",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "date",
+                  "value": "2026-06-23",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reservations/availability",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reservations",
+                    "availability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resource_id",
+                      "value": "{{resource_id}}",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "date",
+                      "value": "2026-07-15",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Create a new reservation",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resource_id\": \"e577ffc8-b369-4e86-85c3-3857844c294d\",\n  \"start_time\": \"2026-06-18T10:00:00Z\",\n  \"end_time\": \"2026-06-18T11:00:00Z\",\n  \"notes\": \"Primera reserva de prueba\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reservations",
+              "path": [
+                "api",
+                "v1",
+                "reservations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reservations",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reservations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "List reservations",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reservations",
+              "path": [
+                "api",
+                "v1",
+                "reservations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "50",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reservations",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reservations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Get reservation by ID",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reservations/:reservation_id",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                ":reservation_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "reservation_id",
+                  "value": "",
+                  "description": "",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reservations/:reservation_id",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reservations",
+                    ":reservation_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "key": "reservation_id",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ]
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Confirm a reservation (admin/employee only)",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reservations/:reservation_id/confirm",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                ":reservation_id",
+                "confirm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "reservation_id",
+                  "value": "35cdedbd-fb06-4a83-8740-52091e3bec32",
+                  "description": "",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reservations/:reservation_id/confirm",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reservations",
+                    ":reservation_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "key": "reservation_id",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ]
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Cancel a reservation",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"reason\": \"none\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reservations/:reservation_id/cancel",
+              "path": [
+                "api",
+                "v1",
+                "reservations",
+                ":reservation_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "reservation_id",
+                  "value": "f5347fbe-f1ba-4704-afcd-67205a30118b",
+                  "description": "",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reservations/:reservation_id/cancel",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reservations",
+                    ":reservation_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "key": "reservation_id",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "text"
+                    }
+                  }
+                }
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "List reservations (pending)",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reservations",
+              "path": [
+                "api",
+                "v1",
+                "reservations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "limit",
+                  "value": "50",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reservations",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reservations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "pending",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "List reservations (confirmed)",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reservations",
+              "path": [
+                "api",
+                "v1",
+                "reservations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "confirmed",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "limit",
+                  "value": "50",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reservations",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reservations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "confirmed",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "List reservations (cancelled)",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reservations",
+              "path": [
+                "api",
+                "v1",
+                "reservations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "cancelled",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "limit",
+                  "value": "50",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reservations",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reservations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "cancelled",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "List reservations (by resource)",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reservations",
+              "path": [
+                "api",
+                "v1",
+                "reservations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "resource_id",
+                  "value": "e577ffc8-b369-4e86-85c3-3857844c294d",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "limit",
+                  "value": "50",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reservations",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reservations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resource_id",
+                      "value": "{{resource_id}}",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "List reservations (completed)",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reservations",
+              "path": [
+                "api",
+                "v1",
+                "reservations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "completed",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "limit",
+                  "value": "50",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reservations",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reservations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "completed",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "auth": {}
+    },
+    {
+      "name": "Reports",
+      "description": "",
+      "item": [
+        {
+          "name": "Daily report (this month)",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reports/daily",
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "daily"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2026-06-08",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2026-06-15",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reports/daily",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reports",
+                    "daily"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "2026-07-01",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-07-31",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Daily reservation counts",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reports/daily",
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "daily"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2026-06-01",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2026-06-30",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reports/daily",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reports",
+                    "daily"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Summary report (this month)",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/reports/summary",
+              "path": [
+                "api",
+                "v1",
+                "reports",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2026-06-01",
+                  "description": "",
+                  "type": "string"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2026-06-30",
+                  "description": "",
+                  "type": "string"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/reports/summary",
+                  "path": [
+                    "api",
+                    "v1",
+                    "reports",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "2026-07-01",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2026-07-31",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "auth": {}
+    },
+    {
+      "name": "Health",
+      "description": "",
+      "item": [
+        {
+          "name": "Health check",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "noauth",
+              "noauth": []
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        },
+        {
+          "name": "Readiness check",
+          "description": "",
+          "event": [],
+          "auth": {},
+          "request": {
+            "auth": {
+              "type": "noauth",
+              "noauth": []
+            },
+            "method": "GET",
+            "body": {},
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ready",
+              "path": [
+                "ready"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/ready",
+                  "path": [
+                    "ready"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {}
+              },
+              "cookie": []
+            }
+          ],
+          "protocolProfileBehavior": {
+            "strictSSL": false,
+            "followRedirects": true
+          }
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "auth": {}
+    }
+  ],
+  "variable": [],
+  "event": [],
+  "auth": {}
+}
